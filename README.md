@@ -1,11 +1,11 @@
 # TicTacToe
 
 # Description
-    Simple Tic Tac Toe game for browser
+    Simple tic-tac-toe game for browser
 
 # Algorithm
     The program just tries to win the game on the next move or prevent his opponent from winning, 
-    if none of these are going to happen on the next move program just randomly chooses the cell 
+    if none of these are going to happen on the next move program just randomly chooses the cell.
 
 ## Running the program(For Linux)
 * ### Clone the repository on your local machine
