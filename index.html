@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tic Tac Toe</title>
+		<meta charset="utf-8">
+		<meta name="desciption" content="Using Javascript alog with html and css">
+		<meta name="keywords" content="Javascript, html, css, how to, study, learn">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="icon" type="image/x-icon" href="assets/img/icon.png">
+	
+	</head>
+
+	<body>
+		<header>
+			<h1>Tic Tac Toe Game</h1>
+			<div id="choose_buttons_div">
+				<button class="choose_buttons" onclick="PressButton(event)" disabled>Cross</button>
+				<button class="choose_buttons" onclick="PressButton(event)">Circle</button>
+			</div>
+		</header>
+
+
+		<section>
+			<button id="restart_button" onclick="Reset()">Restart</button>
+			<div class="game_over_layer" onclick="Reset()">
+				<p>You Won</p>
+			</div>
+			<div class="game_over_layer" onclick="Reset()">
+				<p>You Lost</p>
+			</div>
+			<div class="game_over_layer" onclick="Reset()">
+				<p>Draw</p>
+			</div>	
+			<table>
+				<tr>
+					<td>
+					</td>	
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					
+				</tr>
+
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+
+
+			</table>	
+
+		</section>
+
+	<script src="assets/js/script.js"></script>		
+
+	</body>
+
+
+</html>
