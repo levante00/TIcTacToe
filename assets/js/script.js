@@ -1,5 +1,5 @@
+"use strict";
 let arr = [], index_cm = 0;
-
 
 for(let i = 0; i < 9; i++) {
 	arr[i] = 0;
@@ -43,142 +43,94 @@ function WonTheGameCond(index_pl){
 
 }
 
+function CheckGivenColumnsAndRows(row, column, win_prevent){
+	let index = -1;
+
+	if(arr[row * 3] + arr[(row * 3) + 1] + arr[(row * 3) + 2] == win_prevent){
+		if(arr[row * 3] == 0) {
+			index = row * 3;
+			return index;
+		}
+		else if(arr[(row * 3) + 1] == 0){
+			index = (row * 3) + 1;
+			return index;
+		}	
+		else if(arr[(row * 3) + 2] == 0){
+			index = (row * 3) + 2;
+			return index;
+		}
+	}
+	else if(arr[column] + arr[column + 3] + arr[column + 6] == win_prevent){
+		if(arr[column] == 0) {
+			index = column;
+			return index;
+		}
+		else if(arr[column + 3] == 0){
+			index = column + 3;
+			return index;
+		}	
+		else if(arr[column + 6] == 0){
+			index = column + 6;
+			return index;
+		}
+	}
+	else if(arr[0]  + arr[4]  + arr[8] == win_prevent){
+		if(arr[0] == 0) {
+			index = 0;
+			return index;
+		}
+		else if(arr[4] == 0){
+			index = 4;
+			return index;
+		}	
+
+		else if(arr[8] == 0){
+			index = 8;
+			return index;
+		}		
+	}
+	else if(arr[2] + arr[4] + arr[6] == win_prevent){
+		if(arr[2] == 0) {
+			index = 2;
+			return index;
+		}
+		else if(arr[4] == 0){
+			index = 4;
+			return index;
+		}	
+
+		else if(arr[6] == 0){
+			index = 6;
+			return index;
+		}		
+	}
+	
+	return index;
+
+}
+
 function ComputersTurn(img_cm, color_cm) {
 
 	let row = Math.trunc(Number(index_cm)/3);
 	let column = Math.trunc(Number(index_cm) % 3);	
 	let ans = -1, win = 0, td_arr;
-	if(arr[row * 3] + arr[(row * 3) + 1] + arr[(row * 3) + 2] == -2){
-		if(arr[row * 3] == 0) {
-			arr[row * 3] = -1;
-			ans = row * 3;
-		}
-		else if(arr[(row * 3) + 1] == 0){
-			arr[(row * 3) + 1] = -1;
-			ans = (row * 3) + 1;
-		}	
-		else if(arr[(row * 3) + 2] == 0){
-			arr[(row * 3) + 2] = -1;
-			ans = (row * 3) + 2;
-		}
-		
-		win = 1;
-	}
-	else if(arr[column] + arr[column + 3] + arr[column + 6] == -2){
-		if(arr[column] == 0) {
-			arr[column] = -1;
-			ans = column;
-		}
-		else if(arr[column + 3] == 0){
-			arr[column + 3] = -1;
-			ans = column + 3;
-		}	
-		else if(arr[column + 6] == 0){
-			arr[column + 6] = -1;
-			ans = column + 6;
-		}
-		win = 1;
-	}
-	else if(arr[0]  + arr[4]  + arr[8] == -2){
-		if(arr[0] == 0) {
-			arr[0] = -1;
-			ans = 0;
-		}
-		else if(arr[4] == 0){
-			arr[4] = -1;
-			ans = 4;
-		}	
 
-		else if(arr[8] == 0){
-			arr[8] = -1;
-			ans = 8;
-		}		
-		win = 1;
-	}
-	else if(arr[2] + arr[4] + arr[6] == -2){
-		if(arr[2] == 0) {
-			arr[2] = -1;
-			ans = 2;
-		}
-		else if(arr[4] == 0){
-			arr[4] = -1;
-			ans = 4;
-		}	
-
-		else if(arr[6] == 0){
-			arr[6] = -1;
-			ans = 6;
-		}		
-		win = 1;
+	ans = CheckGivenColumnsAndRows(row, column, -2);
+	if(ans != -1){
+		win = 1
+		arr[ans] = -1;
 	}
 	else {
 		for(let i = 0; i < 3; i++){
-	
-			if(arr[i * 3] + arr[(i * 3) + 1] + arr[(i * 3) + 2] == 2){
-				if(arr[i * 3] == 0){
-					arr[i * 3] = -1;
-					ans = i * 3;
-				}
-				else if(arr[(i * 3) + 1] == 0){
-					arr[(i * 3) + 1] = -1;
-					ans = (i * 3) + 1;
-				}
-				else if(arr[(i * 3) + 2] == 0){
-					arr[(i * 3) + 2] = -1;
-					ans = (i * 3) + 2;
-				}
+			ans = CheckGivenColumnsAndRows(i, i, 2);
+			if(ans != - 1){
+				arr[ans] = -1;
 				break;
-			}
-			else if(arr[i] + arr[i + 3] + arr[i + 6] == 2){
-				if(arr[i] == 0){
-					arr[i] = -1;
-					ans = i;
-				}
-				else if(arr[i + 3] == 0){
-					arr[i + 3] = -1;
-					ans = i + 3;
-				}	
-				else if(arr[i + 6] == 0){
-					arr[i + 6] = -1;
-					ans = i + 6;
-				}	
-				break;
-			}
-			else if(arr[0]  + arr[4]  + arr[8] == 2){
-				if(arr[0] == 0){
-					arr[0] = -1;
-					ans = 0;
-				}
-				else if(arr[4] == 0){
-					arr[4] = -1;
-					ans = 4;
-				}	
-				else if(arr[8] == 0){
-					arr[8] = -1;
-					ans = 8;	
-				}
-				break;
-			}
-			else if(arr[2] + arr[4] + arr[6] == 2){
-				if(arr[2] == 0){
-					arr[2] = -1;
-					ans = 2;
-				}
-				else if(arr[4] == 0){
-					arr[4] = -1;
-					ans = 4;
-				}	
-				else if(arr[6] == 0){
-					arr[6] = -1;
-					ans = 6;
-				}
-				break;	
-			}
-						
+			}	
 		}	
-
 	}
-	if(ans == -1 ){
+	
+	if(ans == -1){
 		while(true){
 			ans = Math.floor(Math.random() * 9);
 			if(arr[ans] == 0)
@@ -188,6 +140,7 @@ function ComputersTurn(img_cm, color_cm) {
 			}
 		}
 	}
+
 	index_cm = ans;
 	td_arr = document.getElementsByTagName("td");
 	for(let i = 0; i < 9; i++){
@@ -321,7 +274,7 @@ function Reset(){
 	let td_arr_len = td_arr.length, layers_num = layers.length;
 	
 	arr = [];
-	index_pl = 0;
+	index_cm = 0;
 
 	buttons[0].setAttribute("click_index", 1);
 	buttons[0].disabled = true;
