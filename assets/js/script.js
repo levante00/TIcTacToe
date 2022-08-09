@@ -201,7 +201,7 @@ function ClickedOnTable(event) {
 	let elem = event.target, index_pl = elem.getAttribute("custom_attr");
 	let choose_buttons = document.getElementsByClassName("choose_buttons");
 	let choose_buttons_len = choose_buttons.length, img_pl, img_cm, color_pl, color_cm;
-
+	let end = 0;
 	if(choose_buttons[0].getAttribute("click_index") == 1) {
 		img_pl = "<img src=\"assets/img/cross.svg\" class=\"inside_table\">";
 		color_pl = "green";
@@ -219,12 +219,12 @@ function ClickedOnTable(event) {
 		elem.innerHTML = img_pl;
 		arr[index_pl]++;
 		if(WonTheGameCond(index_pl)){
-			Won();
+			end = Won();
 
 		}
 		else if(arr.join().indexOf(0) != -1){
 			if(ComputersTurn(img_cm, color_cm)){
-				Lost();
+				end = Lost();
 			} 
 		}		
 		
@@ -232,7 +232,7 @@ function ClickedOnTable(event) {
 	if(arr.indexOf(1) != -1 || arr.indexOf(-1) != -1){
 		DisableButtons();
 	}
-	if(arr.indexOf(0) == -1){
+	if(arr.indexOf(0) == -1 && end == 0){
 		Draw();
 	}
 	console.log(arr);
